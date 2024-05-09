@@ -3,7 +3,6 @@ const router = express.Router();
 const upload = require("../config/multer");
 
 const {
-  addUser,
   getUsers,
   getUserById,
   editUser,

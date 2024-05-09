@@ -151,6 +151,8 @@ exports.getVideoByPlaylist = async (req, res) => {
   }
 };
 
+//get full video by id
+
 exports.getFullVideoById = async (req, res) => {
   try {
     const videoId = req.params.id;

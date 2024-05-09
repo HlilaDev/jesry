@@ -4,9 +4,13 @@ app.use(express.json());
 require("dotenv").config();
 const port = process.env.PORT;
 const apiRoutes = require("./routes");
+const cors = require("cors");
 
 //database Connection
 require("./config/connect");
+
+// Serve static files from the 'uploads' directory
+app.use("/uploads", express.static("uploads"));
 
 //All API's Endpoint
 app.use("/api", apiRoutes);
