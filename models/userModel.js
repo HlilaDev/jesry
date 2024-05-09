@@ -12,6 +12,8 @@ const userSchema = mongoose.Schema({
   },
   password: { type: String, minLength: 5, required: true },
   role: { type: String, default: "user", enum: ["user", "moderator", "admin"] },
+  likedVideos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
+  videosHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
   imageUrl: { type: String, default: "images/profiles/user.png" },
   createdAt: { type: Date, default: Date.now },
 });

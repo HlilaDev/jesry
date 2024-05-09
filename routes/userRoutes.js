@@ -18,7 +18,11 @@ const {
 
 router.get("/allusers", getUsers);
 router.get("/user/:id", getUserById);
-router.put("/editUser/:id", upload.single("image"), editUser);
+router.put(
+  "/editUser/:id",
+  upload("images/profiles").single("image"),
+  editUser
+);
 router.delete("/deleteUser/:id", deleteUser);
 router.get("/videoFav/:id", getVideoFavById);
 router.post("/addToFavorites/:userId", addToFavorites);
