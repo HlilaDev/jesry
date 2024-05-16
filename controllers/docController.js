@@ -119,7 +119,7 @@ exports.getDocByCourse = async (req, res) => {
   }
 };
 
-exports.getDocBySection = async (req, res) => {
+exports.getDocsBySection = async (req, res) => {
   try {
     const sectionId = req.params.id;
 

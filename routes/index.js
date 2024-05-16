@@ -6,6 +6,7 @@ const playlistRoutes = require("./playlistRoutes");
 const docRoutes = require("./docRoutes");
 const noteRoutes = require("./noteRoutes");
 const quoteRoutes = require("./quoteRoutes");
+const likeRoutes = require("./likeRoutes");
 
 //user Middlewres
 router.use("/users", userRoutes);
@@ -24,5 +25,11 @@ router.use("/notes", noteRoutes);
 
 //quotes Middlewres
 router.use("/quotes", quoteRoutes);
+
+//likes Middlewres
+router.use("/likes", likeRoutes);
+
+//Favs Middlewres
+router.use("/favs", likeRoutes);
 
 module.exports = router;

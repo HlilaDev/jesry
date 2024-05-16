@@ -10,6 +10,7 @@ const {
   getDocById,
   searchDocsByQuerry,
   getDocByCourse,
+  getDocsBySection,
 } = require("../controllers/docController");
 
 router.post("/addDoc", upload("/uploads/docs").single("pdf"), addDoc);
@@ -19,5 +20,6 @@ router.put("/editDoc/:id", editDoc);
 router.get("/doc/:id", getDocById);
 router.get("/search", searchDocsByQuerry);
 router.get("/docByCourse/:id", getDocByCourse);
+router.get("/docBySection/:id", getDocsBySection);
 
 module.exports = router;

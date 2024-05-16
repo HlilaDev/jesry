@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const favSchema = new mongoose.Schema({
-  postId: {
+  videoId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Post",
+    ref: "Video",
     required: true,
   },
   userId: {
