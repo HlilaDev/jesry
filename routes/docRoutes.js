@@ -9,6 +9,7 @@ const {
   editDoc,
   getDocById,
   searchDocsByQuerry,
+  getDocByCourse,
 } = require("../controllers/docController");
 
 router.post("/addDoc", upload("/uploads/docs").single("pdf"), addDoc);
@@ -17,5 +18,6 @@ router.delete("/deleteDoc/:id", deleteDoc);
 router.put("/editDoc/:id", editDoc);
 router.get("/doc/:id", getDocById);
 router.get("/search", searchDocsByQuerry);
+router.get("/docByCourse/:id", getDocByCourse);
 
 module.exports = router;

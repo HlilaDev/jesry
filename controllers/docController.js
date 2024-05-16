@@ -1,4 +1,6 @@
 const Doc = require("../models/docModel");
+const Course = require("../models/courseModel");
+const Section = require("../models/sectionModel");
 const fs = require("fs");
 
 //get All Docs
@@ -7,7 +9,7 @@ exports.getAllDocs = async (req, res) => {
     const allDocs = await Doc.find();
     res.status(200).json(allDocs);
   } catch (err) {
-    res.status(500).json({ message: err });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -21,16 +23,16 @@ exports.addDoc = async (req, res) => {
     await newDoc.save();
     res.status(200).json("Doc was created !");
   } catch (err) {
-    res.status(500).json({ message: err });
+    res.status(500).json({ message: err.message });
   }
 };
 
 exports.deleteDoc = async (req, res) => {
   try {
-    const DocId = req.params.id;
+    const docId = req.params.id;
 
     //verify Doc existance
-    const docExist = await Doc.findById(DocId);
+    const docExist = await Doc.findById(docId);
     if (!docExist) {
       return res.status(404).json("Doc not found !");
     }
@@ -47,43 +49,43 @@ exports.deleteDoc = async (req, res) => {
     await Doc.findByIdAndDelete(docExist);
     res.status(200).json("Doc deleted !");
   } catch (err) {
-    res.status(500).json({ message: err });
+    res.status(500).json({ message: err.message });
   }
 };
 
 // edit Doc
 exports.editDoc = async (req, res) => {
   try {
-    const DocId = req.params.id;
+    const docId = req.params.id;
 
     //verify Doc existance
-    const Doc = Doc.findById(DocId);
-    if (!Doc) {
+    const doc = Doc.findById(docId);
+    if (!doc) {
       return res.status(404).json("Doc not found !");
     }
     const newDoc = req.body;
 
-    await Doc.findByIdAndUpdate(DocId, newDoc, { new: true });
+    await Doc.findByIdAndUpdate(docId, newDoc, { new: true });
     res.status(200).json("Doc has been edited  !");
   } catch (err) {
-    res.status(500).json({ message: err });
+    res.status(500).json({ message: err.message });
   }
 };
 
 // get Doc By Id
 exports.getDocById = async (req, res) => {
   try {
-    const DocId = req.params.id;
+    const docId = req.params.id;
 
     //verify Doc existance
-    const Doc = await Doc.findById(DocId);
-    if (!Doc) {
+    const doc = await Doc.findById(docId);
+    if (!doc) {
       return res.status(404).json("Doc not found !");
     }
 
-    res.status(200).json(Doc);
+    res.status(200).json(doc);
   } catch (err) {
-    res.status(500).json({ message: err });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -96,6 +98,40 @@ exports.searchDocsByQuerry = async (req, res) => {
     });
     res.json(docs);
   } catch (err) {
-    res.status(500).json({ message: err });
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getDocByCourse = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+
+    //verify Course existance
+    const courseExist = await Course.findById(courseId);
+    if (!courseExist) {
+      return res.status(404).json("Course not found !");
+    }
+    const docsByCourse = await Doc.find({ course: courseId });
+
+    res.status(200).json(docsByCourse);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getDocBySection = async (req, res) => {
+  try {
+    const sectionId = req.params.id;
+
+    //verify Section existance
+    const sectionExist = await Section.findById(sectionId);
+    if (!sectionExist) {
+      return res.status(404).json("Section not found !");
+    }
+    const docsBySection = await Doc.find({ section: sectionId });
+
+    res.status(200).json(docsBySection);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
