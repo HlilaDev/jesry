@@ -1,6 +1,7 @@
 const Video = require("../models/videoModel");
 const User = require("../models/userModel");
-const Category = require("../models/categoryModel");
+const Course = require("../models/courseModel");
+const Section = require("../models/sectionModel");
 const Playlist = require("../models/playlistModel");
 const fs = require("fs");
 
@@ -115,18 +116,36 @@ exports.getVideoById = async (req, res) => {
   }
 };
 
-//get videos by category
-exports.getVideoByCategory = async (req, res) => {
+//get videos by course Id
+exports.getVideosByCourseId = async (req, res) => {
   try {
-    const catId = req.params.id;
+    const courseId = req.params.id;
     //checking video
-    const categoryExist = await Category.findById(catId);
+    const courseExist = await Course.findById(courseId);
 
-    if (!categoryExist) {
-      res.status(404).json("category not existed ! ");
+    if (!courseExist) {
+      res.status(404).json("Course not exist ! ");
     } else {
-      const videoByCategory = await Video.find({ category: catId });
-      res.status(200).json(videoByCategory);
+      const videosByCourse = await Video.find({ course: courseId });
+      res.status(200).json(videosByCourse);
+    }
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+};
+
+//get videos by Section Id
+exports.getVideosBySectionId = async (req, res) => {
+  try {
+    const sectionId = req.params.id;
+    //checking video
+    const sectionExist = await Section.findById(sectionId);
+
+    if (!sectionExist) {
+      res.status(404).json("Course not exist ! ");
+    } else {
+      const videosBySection = await Video.find({ section: sectionId });
+      res.status(200).json(videosBySection);
     }
   } catch (err) {
     res.status(500).json({ message: err });

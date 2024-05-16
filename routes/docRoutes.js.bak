@@ -12,7 +12,7 @@ const {
 } = require("../controllers/docController");
 
 router.post("/addDoc", upload("/uploads/docs").single("pdf"), addDoc);
-router.get("/allDocs", getAllDocs);
+router.get("/getAllDocs", getAllDocs);
 router.delete("/deleteDoc/:id", deleteDoc);
 router.put("/editDoc/:id", editDoc);
 router.get("/doc/:id", getDocById);

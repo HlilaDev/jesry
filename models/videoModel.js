@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-// Define the Video Schema
 const videoSchema = new mongoose.Schema({
   title: { type: String, maxLegth: 100, required: true },
   description: { type: String, maxLegth: 1000 },
-  //   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+  course: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
+  section: [{ type: mongoose.Schema.Types.ObjectId, ref: "Section" }],
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   likes: { type: Number, default: 0 },
   tags: [{ type: String }], // Add tags field as an array of strings

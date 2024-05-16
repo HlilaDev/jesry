@@ -11,8 +11,8 @@ exports.addQuote = async (req, res) => {
   }
 };
 
-// Get a random quote
-exports.getRandomQuote = async (req, res) => {
+// Get a randome quote
+exports.getRandomeQuote = async (req, res) => {
   try {
     const count = await Quote.countDocuments();
     const random = Math.floor(Math.random() * count);

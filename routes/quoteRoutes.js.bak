@@ -17,9 +17,4 @@ router.put("/edit-quote/:id", quoteController.updateQuote);
 // Route to delete a quote by ID
 router.delete("/delete-quote/:id", quoteController.deleteQuote);
 
-
-// get all quotes
-router.get("/allQuotes", quoteController.getAllQuotes);
-
-
 module.exports = router;
